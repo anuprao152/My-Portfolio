@@ -29,11 +29,7 @@ interface ProjectGridProps {
 const categories = [
   { key: 'all', label: 'All Projects' },
   { key: 'web', label: 'Web Apps' },
-  { key: 'mobile', label: 'Mobile' },
-  { key: 'api', label: 'APIs' },
   { key: 'dashboard', label: 'Dashboards' },
-  { key: 'ecommerce', label: 'E-Commerce' },
-  { key: 'saas', label: 'SaaS' },
 ]
 
 export default function ProjectGrid({ projects, onSelectProject }: ProjectGridProps) {
