@@ -124,14 +124,6 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
           <Button variant="ghost" size="sm" className="ml-auto" onClick={(e) => { e.stopPropagation(); onSelect(project) }}>
             View Details
           </Button>
-          {project.demoUrl && (
-            <Button variant="ghost" size="sm" asChild onClick={(e) => e.stopPropagation()}>
-              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="h-4 w-4 mr-1" />
-                Demo
-              </a>
-            </Button>
-          )}
         </div>
       </CardContent>
     </Card>
