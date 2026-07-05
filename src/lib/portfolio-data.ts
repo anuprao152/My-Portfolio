@@ -1,0 +1,89 @@
+export interface PortfolioProject {
+  id?: string
+  title: string
+  slug: string
+  description: string
+  longDescription?: string
+  category: string
+  videoUrl?: string
+  thumbnailUrl?: string
+  demoUrl?: string
+  repoUrl?: string
+  technologies: string[]
+  techColors: string[]
+  businessImpact?: string
+  impactMetrics: { label: string; value: string }[]
+  featured: boolean
+  status: 'published' | 'draft'
+  sortOrder: number
+}
+
+export const portfolioProjects: PortfolioProject[] = [
+  {
+    title: 'BYOD Management System',
+    slug: 'byod-management',
+    description: 'Microsoft Hybrid Room BYOD Management Service for detecting, tracking, and managing employee-owned devices and peripherals in meeting spaces.',
+    longDescription: 'Built a comprehensive Device (BYOD) Management Service as a crucial part of Microsoft Hybrid Room services. This feature allows organizations to manage meeting spaces where employees bring their own devices such as laptops and tablets. The system automatically detects and records when employees plug in peripherals (cameras, microphones, speakers, displays, etc.) into their devices when joining a meeting.\n\nKey capabilities delivered:\n• Automatic peripheral detection and recording when devices connect to meeting rooms\n• Full IT visibility into room usage through the Pro Management Portal (PMP)\n• Real-time integration with Azure Event Hub for streaming peripheral connection events\n• Cosmos DB storage enabling global scalability for multi-tenant enterprise deployments\n• Association of peripherals with specific BYOD rooms for comprehensive inventory tracking\n• Seamless Teams Room services integration for hybrid work environments',
+    category: 'web',
+    videoUrl: 'https://www.youtube.com/watch?v=5kyRm0sn4Js',
+    thumbnailUrl: 'https://img.youtube.com/vi/5kyRm0sn4Js/hqdefault.jpg',
+    demoUrl: 'https://example.com/demo',
+    repoUrl: 'https://github.com/example/byod',
+    technologies: ['React', 'TypeScript', 'Node.js', 'Cosmos DB', 'Azure Event Hub', 'Docker', 'Azure'],
+    techColors: ['#61DAFB', '#3178C6', '#339933', '#0078D4', '#0063B1', '#2496ED', '#0078D4'],
+    businessImpact: 'Enabled 50K+ organizations to gain complete visibility into BYOD peripherals with 99.8% detection accuracy and real-time inventory tracking across hybrid rooms',
+    impactMetrics: [
+      { label: 'Peripherals Tracked', value: '2M+' },
+      { label: 'Detection Accuracy', value: '99.8%' },
+      { label: 'Organizations Using', value: '50K+' },
+      { label: 'Availability', value: '99.99%' },
+    ],
+    featured: false,
+    status: 'published',
+    sortOrder: 1,
+  },
+  {
+    title: 'AI Assistant',
+    slug: 'ai-assistant',
+    description: 'PMP AI Assistant is an AI-powered assistant within the PMP ecosystem that helps administrators and engineers quickly access information, troubleshoot issues, understand PMP features and policies, analyze incidents, and improve operational efficiency through conversational interactions.',
+    longDescription: 'PMP AI Assistant is an AI-powered assistant within the PMP ecosystem that helps administrators and engineers quickly access information, troubleshoot issues, understand PMP features and policies, analyze incidents, and improve operational efficiency through conversational interactions. It leverages PMP knowledge, documentation, and operational context to provide guidance, answer questions, and assist with day-to-day device and room management tasks.',
+    category: 'dashboard',
+    videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop',
+    demoUrl: 'https://example.com/analytics-demo',
+    technologies: ['ASP.NET Core', 'Semantic Kernel', 'Semantic Kernel Agents', 'Azure OpenAI / OpenAI SDK', 'Azure AI Search', 'Kusto / KQL'],
+    techColors: ['#512BD4', '#5C2D91', '#5C2D91', '#0078D4', '#0078D4', '#0078D4'],
+    businessImpact: 'Reduces the time administrators spend searching through documentation, support articles, and operational guidance by providing instant, AI-powered answers. It improves administrator productivity, lowers support costs, accelerates PMP adoption, enhances customer satisfaction, and scales support capabilities without proportional increases in headcount.',
+    impactMetrics: [
+      { label: 'Support Speed', value: 'Faster' },
+      { label: 'Workflow Help', value: 'Conversational' },
+      { label: 'Operational Focus', value: 'PMP' },
+      { label: 'Use Case', value: 'Troubleshooting' },
+    ],
+    featured: false,
+    status: 'published',
+    sortOrder: 2,
+  },
+  {
+    title: 'SaaS Collaboration Tool',
+    slug: 'saas-collaboration',
+    description: 'A real-time collaboration platform with document editing, team spaces, and integrated video conferencing.',
+    longDescription: 'Built a SaaS collaboration tool that enables teams to work together seamlessly. Features include real-time document editing, persistent chat, and video calls.\n\nTechnical highlights:\n• CRDT-based real-time collaboration engine supporting 100+ concurrent editors\n• End-to-end encryption for all documents and communications\n• WebRTC-powered video conferencing with screen sharing\n• Granular permissions system with team workspaces',
+    category: 'saas',
+    videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&h=450&fit=crop',
+    demoUrl: 'https://example.com/collab-demo',
+    technologies: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'WebSocket', 'WebRTC', 'AWS'],
+    techColors: ['#61DAFB', '#3178C6', '#339933', '#47A248', '#FF6B00', '#FF6B00', '#FF9900'],
+    businessImpact: 'Enabled teams to reduce meeting time by 40% and increase productivity',
+    impactMetrics: [
+      { label: 'Active Teams', value: '2,500+' },
+      { label: 'Documents/Day', value: '100K+' },
+      { label: 'Meeting Time', value: '-40%' },
+      { label: 'NPS Score', value: '72' },
+    ],
+    featured: false,
+    status: 'published',
+    sortOrder: 3,
+  },
+]
