@@ -6,3 +6,6 @@ dist/
 .vite/
 coverage/
 .DS_Store
+AGENTS.md
+vite.config.js
+vite.config.d.ts
