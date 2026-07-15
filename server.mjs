@@ -19,7 +19,7 @@ const portfolioProjects = [
     thumbnailUrl: 'https://img.youtube.com/vi/5kyRm0sn4Js/hqdefault.jpg',
     demoUrl: 'https://example.com/demo',
     repoUrl: 'https://github.com/example/byod',
-    technologies: ['React', 'TypeScript', 'Node.js', 'Cosmos DB', 'Azure Event Hub', 'Docker', 'Azure'],
+    technologies: ['React', 'TypeScript', 'Node.js', 'Cosmos DB', 'SQL Server', 'Azure Event Hub', 'Docker', 'Azure'],
     techColors: ['#61DAFB', '#3178C6', '#339933', '#0078D4', '#0063B1', '#2496ED', '#0078D4'],
     businessImpact: 'Enabled 50K+ organizations to gain complete visibility into BYOD peripherals with 99.8% detection accuracy and real-time inventory tracking across hybrid rooms',
     impactMetrics: [
@@ -41,7 +41,7 @@ const portfolioProjects = [
     videoUrl: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
     thumbnailUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop',
     demoUrl: 'https://example.com/analytics-demo',
-    technologies: ['ASP.NET Core', 'Semantic Kernel', 'Semantic Kernel Agents', 'Azure OpenAI / OpenAI SDK', 'Azure AI Search', 'Kusto / KQL'],
+    technologies: ['.NET Core', 'C#', 'ASP.NET Core', 'Semantic Kernel', 'Semantic Kernel Agents', 'Azure OpenAI / OpenAI SDK', 'Azure AI Search', 'Kusto / KQL', 'Azure DevOps'],
     techColors: ['#512BD4', '#5C2D91', '#5C2D91', '#0078D4', '#0078D4', '#0078D4'],
     businessImpact: 'Reduces the time administrators spend searching through documentation, support articles, and operational guidance by providing instant, AI-powered answers. It improves administrator productivity, lowers support costs, accelerates PMP adoption, enhances customer satisfaction, and scales support capabilities without proportional increases in headcount.',
     impactMetrics: [
@@ -60,7 +60,7 @@ const portfolioProjects = [
     longDescription: 'An extension of the BYOD platform that introduced desk session APIs so employees could automatically reserve desks as they connected their shared peripherals to Microsoft Teams. The feature created a connected experience for hot-desking and gave organizations clearer visibility into desk usage and reservation status.',
     category: 'web',
     thumbnailUrl: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=450&fit=crop',
-    technologies: ['ASP.NET Core', 'Azure Cosmos DB', 'React', 'TypeScript', 'Azure Functions', 'Azure Monitor'],
+    technologies: ['.NET Core', 'C#', 'ASP.NET Core', 'Cosmos DB', 'SQL Server', 'React', 'TypeScript', 'Azure Functions', 'Azure Monitor', 'Azure DevOps'],
     techColors: ['#512BD4', '#0078D4', '#61DAFB', '#3178C6', '#00A4EF', '#0078D4'],
     businessImpact: 'Enabled thousands of customers to find, reserve, and use available desks in flexible workplaces while improving workspace utilization visibility.',
     impactMetrics: [
@@ -78,7 +78,7 @@ const portfolioProjects = [
     longDescription: 'Designed and implemented a service-side capability that surfaced critical room health alerts directly on Microsoft Teams Rooms and Teams Panels. The feature used an IoT-based communication path and real-time monitoring dashboard to alert users and IT teams when sign-in failures or device issues impacted meeting readiness.',
     category: 'dashboard',
     thumbnailUrl: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=450&fit=crop',
-    technologies: ['ASP.NET Core', 'SignalR', 'Azure Service Bus', 'React', 'TypeScript', 'Azure Monitor'],
+    technologies: ['.NET Core', 'C#', 'ASP.NET Core', 'SignalR', 'Cosmos DB', 'SQL Server', 'Azure Service Bus', 'React', 'TypeScript', 'Azure Monitor'],
     techColors: ['#512BD4', '#00A4EF', '#0078D4', '#61DAFB', '#3178C6', '#0078D4'],
     businessImpact: 'Now helps over one million Microsoft Teams Rooms devices display real-time health alerts, improving response efficiency and preserving seamless meeting experiences.',
     impactMetrics: [
@@ -96,7 +96,7 @@ const portfolioProjects = [
     longDescription: 'Built the multi-tenant management experience for Microsoft Teams Pro Management so partners could view and switch between customer environments using a centralized portal. The solution included secure invitation and delegation workflows, role-based access controls, and centralized monitoring for incidents, configuration, and room performance.',
     category: 'web',
     thumbnailUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=450&fit=crop',
-    technologies: ['ASP.NET Core', 'React', 'TypeScript', 'Azure AD', 'RBAC', 'Azure SQL'],
+    technologies: ['.NET Core', 'C#', 'ASP.NET Core', 'React', 'TypeScript', 'Azure AD', 'RBAC', 'SQL Server', 'Azure DevOps'],
     techColors: ['#512BD4', '#61DAFB', '#3178C6', '#0078D4', '#00A4EF', '#00A4EF'],
     businessImpact: 'Enabled hundreds of active partners to manage more rooms efficiently with secure delegated access, stronger visibility, and better operational control.',
     impactMetrics: [

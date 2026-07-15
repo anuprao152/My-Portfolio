@@ -6,25 +6,25 @@ const skills = [
     icon: Globe,
     title: 'Frontend',
     description: 'Building responsive, accessible interfaces with modern frameworks.',
-    techs: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js', 'Vue'],
+    techs: ['React', 'TypeScript'],
   },
   {
     icon: Server,
     title: 'Backend',
     description: 'Designing scalable APIs and microservices architectures.',
-    techs: ['Node.js', 'Python', 'Hono', 'GraphQL', 'REST'],
+    techs: ['Node.js', 'Python', '.NET Core', 'C#', 'REST'],
   },
   {
     icon: Database,
     title: 'Data & Storage',
     description: 'Managing data with SQL, NoSQL, and caching solutions.',
-    techs: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma', 'SQLite'],
+    techs: ['Cosmos DB', 'SQL Server', 'Redis', 'SQLite'],
   },
   {
     icon: Code2,
     title: 'DevOps & Tools',
     description: 'Deploying and managing applications at scale.',
-    techs: ['Docker', 'AWS', 'Vercel', 'Firebase', 'Supabase'],
+    techs: ['Docker', 'Azure DevOps', 'Vercel'],
   },
 ]
 

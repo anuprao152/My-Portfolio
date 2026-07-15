@@ -9,23 +9,17 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid md:grid-cols-2 gap-12 mb-12">
           <div>
-            <h2 className="text-3xl font-bold mb-4">Let's Work Together</h2>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              I'm always open to discussing new projects, creative ideas, or
-              opportunities to be part of your vision. Let's build something
-              extraordinary.
-            </p>
             <div className="flex flex-col gap-3">
               <a
-                href="mailto:hello@example.com"
+                href="mailto:anuprao85@gmail.com"
                 className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Mail className="h-5 w-5" />
-                <span>hello@example.com</span>
+                <span>anuprao85@gmail.com</span>
               </a>
               <div className="flex items-center gap-3 text-muted-foreground">
                 <MapPin className="h-5 w-5" />
-                <span>San Francisco, CA</span>
+                <span>Atlanta, GA</span>
               </div>
             </div>
           </div>
