@@ -83,6 +83,42 @@ import { Hono } from 'hono'
 
 const app = new Hono()
 
+function sanitizeProject<T extends { businessImpact?: unknown; impactMetrics?: unknown }>(project: T): T {
+  const businessImpact =
+    typeof project.businessImpact === 'string'
+      ? project.businessImpact
+          .replace(/\s*with\s+99\.8%\s+detection\s+accuracy\s+and\s+/i, ' with ')
+          .replace(/\s{2,}/g, ' ')
+          .trim()
+      : project.businessImpact
+
+  let impactMetrics = project.impactMetrics
+
+  if (typeof impactMetrics === 'string') {
+    try {
+      const parsed = JSON.parse(impactMetrics)
+      if (Array.isArray(parsed)) {
+        const filtered = parsed.filter(
+          (metric) => !(metric && typeof metric.label === 'string' && metric.label.toLowerCase() === 'detection accuracy')
+        )
+        impactMetrics = JSON.stringify(filtered)
+      }
+    } catch {
+      // Keep original payload if stored value is not valid JSON.
+    }
+  } else if (Array.isArray(impactMetrics)) {
+    impactMetrics = impactMetrics.filter(
+      (metric) => !(metric && typeof metric.label === 'string' && metric.label.toLowerCase() === 'detection accuracy')
+    )
+  }
+
+  return {
+    ...project,
+    businessImpact,
+    impactMetrics,
+  }
+}
+
 // Portfolio routes
 app.get('/portfolio/projects', async (c) => {
   const { prisma } = await import('./src/lib/db')
@@ -90,7 +126,7 @@ app.get('/portfolio/projects', async (c) => {
     where: { status: 'published' },
     orderBy: { sortOrder: 'asc' },
   })
-  return c.json({ projects })
+  return c.json({ projects: projects.map((project) => sanitizeProject(project)) })
 })
 
 app.get('/portfolio/projects/:slug', async (c) => {
@@ -99,7 +135,7 @@ app.get('/portfolio/projects/:slug', async (c) => {
     where: { slug: c.req.param('slug') },
   })
   if (!project) return c.json({ error: 'Project not found' }, 404)
-  return c.json({ project })
+  return c.json({ project: sanitizeProject(project) })
 })
 
 // Seed endpoint (dev only)
@@ -118,10 +154,9 @@ app.post('/portfolio/seed', async (c) => {
       repoUrl: 'https://github.com/example/byod',
       technologies: JSON.stringify(['React', 'TypeScript', 'Node.js', 'Cosmos DB', 'Azure Event Hub', 'Docker', 'Azure']),
       techColors: JSON.stringify(['#61DAFB', '#3178C6', '#339933', '#0078D4', '#0063B1', '#2496ED', '#0078D4']),
-      businessImpact: 'Enabled 50K+ organizations to gain complete visibility into BYOD peripherals with 99.8% detection accuracy and real-time inventory tracking across hybrid rooms',
+      businessImpact: 'Enabled 50K+ organizations to gain complete visibility into BYOD peripherals with real-time inventory tracking across hybrid rooms',
       impactMetrics: JSON.stringify([
         { label: 'Peripherals Tracked', value: '2M+' },
-        { label: 'Detection Accuracy', value: '99.8%' },
         { label: 'Organizations Using', value: '50K+' },
         { label: 'Availability', value: '99.99%' },
       ]),

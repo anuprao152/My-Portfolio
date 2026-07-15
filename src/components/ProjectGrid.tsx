@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Filter } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Filter, LayoutGrid, Rows3 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import ProjectCard from './ProjectCard'
 import TechBadge from './TechBadge'
@@ -32,9 +32,108 @@ const categories = [
   { key: 'ai', label: 'AI' },
 ]
 
+function ProjectListItem({
+  project,
+  index,
+  onSelectProject,
+}: {
+  project: ProjectData
+  index: number
+  onSelectProject: (project: ProjectData) => void
+}) {
+  const rowRef = useRef<HTMLDivElement | null>(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const current = rowRef.current
+    if (!current) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        if (entry && entry.isIntersecting) {
+          setIsVisible(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 }
+    )
+
+    observer.observe(current)
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <div
+      ref={rowRef}
+      className={`group overflow-hidden rounded-2xl border border-border/50 bg-card/70 backdrop-blur transition-all duration-700 ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+      }`}
+      style={{ transitionDelay: `${Math.min(index * 90, 420)}ms` }}
+    >
+      <div className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+        <div className="relative md:w-[45%]">
+          {project.thumbnailUrl ? (
+            <img
+              src={project.thumbnailUrl}
+              alt={project.title}
+              className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-105 md:h-full"
+            />
+          ) : (
+            <div className="flex h-64 w-full items-center justify-center bg-muted md:h-full">
+              <span className="text-4xl text-muted-foreground">Project</span>
+            </div>
+          )}
+          {project.featured && (
+            <div className="absolute left-4 top-4 rounded-full bg-foreground px-3 py-1 text-xs font-medium text-background">
+              Featured
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-1 flex-col justify-between p-6 md:p-8">
+          <div>
+            <div className="mb-3 flex items-center gap-2">
+              <span className="rounded-full border border-border/70 px-2.5 py-1 text-xs uppercase tracking-wide text-muted-foreground">
+                {project.category}
+              </span>
+            </div>
+
+            <h3 className="mb-3 text-2xl font-semibold leading-tight">{project.title}</h3>
+            <p className="mb-4 text-muted-foreground">{project.description}</p>
+
+            {project.businessImpact && (
+              <p className="mb-5 rounded-xl bg-muted/50 px-3 py-2 text-sm font-medium">
+                {project.businessImpact}
+              </p>
+            )}
+
+            <div className="mb-5 flex flex-wrap gap-2">
+              {project.technologies.slice(0, 6).map((tech, i) => (
+                <TechBadge key={tech} name={tech} color={project.techColors[i]} size="sm" />
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between gap-3">
+            <div className="text-sm text-muted-foreground">
+              {project.impactMetrics.length > 0
+                ? `${project.impactMetrics[0]?.label}: ${project.impactMetrics[0]?.value}`
+                : 'View project details'}
+            </div>
+            <Button onClick={() => onSelectProject(project)}>View Details</Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function ProjectGrid({ projects, onSelectProject }: ProjectGridProps) {
   const [activeCategory, setActiveCategory] = useState('all')
   const [selectedTech, setSelectedTech] = useState<string | null>(null)
+  const [viewMode, setViewMode] = useState<'cards' | 'list'>('list')
 
   const allTechnologies = Array.from(
     new Set(projects.flatMap((p) => p.technologies))
@@ -61,19 +160,42 @@ export default function ProjectGrid({ projects, onSelectProject }: ProjectGridPr
         </div>
 
         <div className="flex flex-col gap-4 mb-8">
-          <div className="flex flex-wrap items-center gap-2">
-            <Filter className="h-4 w-4 text-muted-foreground mr-1" />
-            {categories.map((cat) => (
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center gap-2">
+              <Filter className="h-4 w-4 text-muted-foreground mr-1" />
+              {categories.map((cat) => (
+                <Button
+                  key={cat.key}
+                  variant={activeCategory === cat.key ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setActiveCategory(cat.key)}
+                  className="rounded-full"
+                >
+                  {cat.label}
+                </Button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-1 rounded-full border border-border/70 p-1">
               <Button
-                key={cat.key}
-                variant={activeCategory === cat.key ? 'default' : 'outline'}
+                variant={viewMode === 'cards' ? 'default' : 'ghost'}
                 size="sm"
-                onClick={() => setActiveCategory(cat.key)}
+                onClick={() => setViewMode('cards')}
                 className="rounded-full"
               >
-                {cat.label}
+                <LayoutGrid className="mr-1.5 h-4 w-4" />
+                Cards
               </Button>
-            ))}
+              <Button
+                variant={viewMode === 'list' ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => setViewMode('list')}
+                className="rounded-full"
+              >
+                <Rows3 className="mr-1.5 h-4 w-4" />
+                List
+              </Button>
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-1.5">
@@ -94,39 +216,56 @@ export default function ProjectGrid({ projects, onSelectProject }: ProjectGridPr
           </div>
         </div>
 
-        {featuredProjects.length > 0 && (
-          <div className="mb-12">
-            <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
-              ⭐ Featured
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {featuredProjects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onSelect={onSelectProject}
-                />
-              ))}
-            </div>
-          </div>
+        {viewMode === 'cards' && (
+          <>
+            {featuredProjects.length > 0 && (
+              <div className="mb-12">
+                <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+                  ⭐ Featured
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {featuredProjects.map((project) => (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      onSelect={onSelectProject}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {regularProjects.length > 0 && (
+              <div>
+                {featuredProjects.length > 0 && (
+                  <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
+                    All Projects
+                  </h3>
+                )}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {regularProjects.map((project) => (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      onSelect={onSelectProject}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
         )}
 
-        {regularProjects.length > 0 && (
-          <div>
-            {featuredProjects.length > 0 && (
-              <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">
-                All Projects
-              </h3>
-            )}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {regularProjects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onSelect={onSelectProject}
-                />
-              ))}
-            </div>
+        {viewMode === 'list' && filteredProjects.length > 0 && (
+          <div className="space-y-6">
+            {filteredProjects.map((project, index) => (
+              <ProjectListItem
+                key={project.id}
+                project={project}
+                index={index}
+                onSelectProject={onSelectProject}
+              />
+            ))}
           </div>
         )}
 

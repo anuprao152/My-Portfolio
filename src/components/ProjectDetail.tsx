@@ -1,5 +1,4 @@
-import { X, ExternalLink, Github, Play, Pause } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { X, Play, Pause } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import TechBadge from './TechBadge'
 import ImpactMetric from './ImpactMetric'
@@ -139,25 +138,6 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
               <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
               <p className="text-muted-foreground">{project.description}</p>
             </div>
-          </div>
-
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.demoUrl && (
-              <Button asChild>
-                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Live Demo
-                </a>
-              </Button>
-            )}
-            {project.repoUrl && (
-              <Button variant="outline" asChild>
-                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4 mr-2" />
-                  View Code
-                </a>
-              </Button>
-            )}
           </div>
 
           <Separator className="my-6" />

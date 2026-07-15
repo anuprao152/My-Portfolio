@@ -21,10 +21,9 @@ const portfolioProjects = [
     repoUrl: 'https://github.com/example/byod',
     technologies: ['React', 'TypeScript', 'Node.js', 'Cosmos DB', 'SQL Server', 'Azure Event Hub', 'Docker', 'Azure'],
     techColors: ['#61DAFB', '#3178C6', '#339933', '#0078D4', '#0063B1', '#2496ED', '#0078D4'],
-    businessImpact: 'Enabled 50K+ organizations to gain complete visibility into BYOD peripherals with 99.8% detection accuracy and real-time inventory tracking across hybrid rooms',
+    businessImpact: 'Enabled 50K+ organizations to gain complete visibility into BYOD peripherals with real-time inventory tracking across hybrid rooms',
     impactMetrics: [
       { label: 'Peripherals Tracked', value: '2M+' },
-      { label: 'Detection Accuracy', value: '99.8%' },
       { label: 'Organizations Using', value: '50K+' },
       { label: 'Availability', value: '99.99%' },
     ],
