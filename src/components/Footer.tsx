@@ -2,8 +2,6 @@ import { Mail, MapPin, ArrowUpRight } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
-
   return (
     <footer id="contact" className="bg-muted/30 border-t border-border">
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -50,9 +48,6 @@ export default function Footer() {
 
         <Separator className="mb-8" />
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p>&copy; {currentYear} Portfolio. Built with passion.</p>
-        </div>
       </div>
     </footer>
   )
