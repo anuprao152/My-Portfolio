@@ -31,7 +31,7 @@ const categoryIcons: Record<string, string> = {
   web: '🌐',
   mobile: '📱',
   api: '⚡',
-  dashboard: '📊',
+  ai: '🤖',
   ecommerce: '🛒',
   saas: '☁️',
 }

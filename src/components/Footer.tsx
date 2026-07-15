@@ -28,10 +28,10 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="grid grid-cols-2 gap-3">
               {[
-                { label: 'GitHub', href: 'https://github.com' },
-                { label: 'LinkedIn', href: 'https://linkedin.com' },
-                { label: 'Twitter / X', href: 'https://x.com' },
-                { label: 'Blog', href: '#' },
+                // { label: 'GitHub', href: 'https://github.com' },
+                { label: 'LinkedIn', href: 'https://www.linkedin.com/in/anup-rao-38393117/' },
+                // { label: 'Twitter / X', href: 'https://x.com' },
+                // { label: 'Blog', href: '#' },
               ].map((link) => (
                 <a
                   key={link.label}
@@ -52,11 +52,6 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p>&copy; {currentYear} Portfolio. Built with passion.</p>
-          <p>
-            Built with{' '}
-            <span className="font-medium text-foreground">React</span> +{' '}
-            <span className="font-medium text-foreground">Tailwind CSS</span>
-          </p>
         </div>
       </div>
     </footer>
