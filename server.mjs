@@ -58,6 +58,7 @@ const portfolioProjects = [
     description: 'Automated desk reservation and utilization tracking for flexible workspaces built on top of the BYOD management platform.',
     longDescription: 'An extension of the BYOD platform that introduced desk session APIs so employees could automatically reserve desks as they connected their shared peripherals to Microsoft Teams. The feature created a connected experience for hot-desking and gave organizations clearer visibility into desk usage and reservation status.',
     category: 'web',
+    videoUrl: 'https://www.youtube.com/watch?v=QMbXmTUDfFM',
     thumbnailUrl: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=800&h=450&fit=crop',
     technologies: ['.NET Core', 'C#', 'ASP.NET Core', 'Cosmos DB', 'SQL Server', 'React', 'TypeScript', 'Azure Functions', 'Azure Monitor', 'Azure DevOps'],
     techColors: ['#512BD4', '#0078D4', '#61DAFB', '#3178C6', '#00A4EF', '#0078D4'],
