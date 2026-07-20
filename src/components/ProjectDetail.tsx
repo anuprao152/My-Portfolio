@@ -88,23 +88,13 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
         {project.videoUrl && (
           <div className="relative aspect-video bg-black rounded-t-2xl overflow-hidden">
             {isYouTubeUrl(project.videoUrl) ? (
-              <a
-                href={getYouTubeWatchUrl(project.videoUrl)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full h-full relative"
-              >
-                <img
-                  src={project.thumbnailUrl}
-                  alt={`${project.title} video`}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors">
-                  <div className="w-20 h-20 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-2xl">
-                    <Play className="h-8 w-8 text-foreground ml-1" />
-                  </div>
-                </div>
-              </a>
+              <iframe
+                src={getYouTubeEmbedUrl(project.videoUrl)}
+                title={`${project.title} video`}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             ) : (
               <>
                 <video
