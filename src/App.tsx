@@ -14,6 +14,7 @@ interface ProjectData {
   longDescription?: string
   category: string
   videoUrl?: string
+  docUrl?: string
   thumbnailUrl?: string
   demoUrl?: string
   repoUrl?: string

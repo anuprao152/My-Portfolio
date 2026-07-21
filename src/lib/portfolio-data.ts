@@ -6,6 +6,7 @@ export interface PortfolioProject {
   longDescription?: string
   category: string
   videoUrl?: string
+  docUrl?: string
   thumbnailUrl?: string
   demoUrl?: string
   repoUrl?: string
@@ -106,6 +107,7 @@ export const portfolioProjects: PortfolioProject[] = [
     description: 'A partner portal experience that enables secure delegation and centralized management across multiple customer tenants.',
     longDescription: 'Built the multi-tenant management experience for Microsoft Teams Pro Management so partners could view and switch between customer environments using a centralized portal. The solution included secure invitation and delegation workflows, role-based access controls, and centralized monitoring for incidents, configuration, and room performance.',
     category: 'web',
+    docUrl: 'https://learn.microsoft.com/en-us/microsoftteams/rooms/multi-tenant-management-partner',
     thumbnailUrl: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=450&fit=crop',
     technologies: ['.NET Core', 'C#', 'ASP.NET Core', 'React', 'TypeScript', 'Azure AD', 'RBAC', 'SQL Server', 'Azure DevOps'],
     techColors: ['#512BD4', '#61DAFB', '#3178C6', '#0078D4', '#00A4EF', '#00A4EF'],

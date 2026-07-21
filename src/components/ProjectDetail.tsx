@@ -1,4 +1,4 @@
-import { X, Play, Pause } from 'lucide-react'
+import { X, Play, Pause, ExternalLink } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import TechBadge from './TechBadge'
 import ImpactMetric from './ImpactMetric'
@@ -21,18 +21,6 @@ function getYouTubeEmbedUrl(url: string) {
   return url
 }
 
-function getYouTubeWatchUrl(url: string) {
-  try {
-    const parsed = new URL(url)
-    const vid = parsed.searchParams.get('v') || parsed.pathname.split('/').filter(Boolean)[0]
-    if (vid) return `https://www.youtube.com/watch?v=${vid}`
-  } catch {
-    const match = url.match(/(?:youtube\.com(?:\/watch\?v=|\/embed\/)|youtu\.be\/)([A-Za-z0-9_-]+)/)
-    if (match?.[1]) return `https://www.youtube.com/watch?v=${match[1]}`
-  }
-  return url
-}
-
 interface ProjectData {
   id: string
   title: string
@@ -41,6 +29,7 @@ interface ProjectData {
   longDescription?: string
   category: string
   videoUrl?: string
+  docUrl?: string
   thumbnailUrl?: string
   demoUrl?: string
   repoUrl?: string
@@ -85,9 +74,9 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
           <X className="h-4 w-4" />
         </button>
 
-        {project.videoUrl && (
+        {(project.videoUrl || project.docUrl || project.thumbnailUrl) && (
           <div className="relative aspect-video bg-black rounded-t-2xl overflow-hidden">
-            {isYouTubeUrl(project.videoUrl) ? (
+            {project.videoUrl && isYouTubeUrl(project.videoUrl) ? (
               <iframe
                 src={getYouTubeEmbedUrl(project.videoUrl)}
                 title={`${project.title} video`}
@@ -95,7 +84,7 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
-            ) : (
+            ) : project.videoUrl ? (
               <>
                 <video
                   ref={videoRef}
@@ -118,16 +107,59 @@ export default function ProjectDetail({ project, onClose }: ProjectDetailProps) 
                   </div>
                 </button>
               </>
-            )}
+            ) : project.docUrl ? (
+              <a
+                href={project.docUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block h-full w-full"
+              >
+                {project.thumbnailUrl ? (
+                  <img
+                    src={project.thumbnailUrl}
+                    alt={`${project.title} documentation`}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-muted/30 px-6 text-center text-lg font-medium text-background">
+                    Documentation available for this project
+                  </div>
+                )}
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 transition-colors group-hover:bg-black/45">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-5 py-2.5 text-sm font-semibold text-foreground shadow-xl">
+                    <ExternalLink className="h-4 w-4" />
+                    Read Documentation
+                  </span>
+                </div>
+              </a>
+            ) : project.thumbnailUrl ? (
+              <img
+                src={project.thumbnailUrl}
+                alt={`${project.title} preview`}
+                className="h-full w-full object-cover"
+              />
+            ) : null}
           </div>
         )}
 
         <div className="p-8">
-          <div className="flex items-start justify-between mb-4">
+          <div className="flex items-start justify-between mb-4 gap-4">
             <div>
               <h2 className="text-3xl font-bold mb-2">{project.title}</h2>
               <p className="text-muted-foreground">{project.description}</p>
             </div>
+
+            {project.docUrl && !project.videoUrl && (
+              <a
+                href={project.docUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-medium hover:bg-muted transition-colors"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Read Documentation
+              </a>
+            )}
           </div>
 
           <Separator className="my-6" />
