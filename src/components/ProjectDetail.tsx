@@ -2,7 +2,7 @@ import { X, Play, Pause, ExternalLink } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import TechBadge from './TechBadge'
 import ImpactMetric from './ImpactMetric'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function isYouTubeUrl(url: string) {
   return /youtube\.com\/(watch\?v=|embed\/)|youtu\.be\//.test(url)
@@ -48,6 +48,14 @@ interface ProjectDetailProps {
 export default function ProjectDetail({ project, onClose }: ProjectDetailProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [onClose])
 
   if (!project) return null
 

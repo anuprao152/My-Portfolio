@@ -1,12 +1,15 @@
-import { Mail, MapPin, ArrowUpRight } from 'lucide-react'
+import { Mail, MapPin, ArrowUpRight, Github } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 
 export default function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer id="contact" className="bg-muted/30 border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 gap-12 mb-12">
+    <footer id="contact" className="scroll-mt-16 bg-muted/30 border-t border-border">
+      <div className="max-w-6xl mx-auto px-6 py-12">
+        <div className="grid md:grid-cols-2 gap-12 mb-10">
           <div>
+            <h3 className="text-lg font-semibold mb-4">Let's connect</h3>
             <div className="flex flex-col gap-3">
               <a
                 href="mailto:anuprao85@gmail.com"
@@ -26,10 +29,8 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <div className="grid grid-cols-2 gap-3">
               {[
-                // { label: 'GitHub', href: 'https://github.com' },
-                { label: 'LinkedIn', href: 'https://www.linkedin.com/in/anup-rao-38393117/' },
-                // { label: 'Twitter / X', href: 'https://x.com' },
-                // { label: 'Blog', href: '#' },
+                { label: 'LinkedIn', href: 'https://www.linkedin.com/in/anup-rao-38393117/', icon: null },
+                { label: 'GitHub', href: 'https://github.com/anuprao152', icon: Github },
               ].map((link) => (
                 <a
                   key={link.label}
@@ -38,6 +39,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors group"
                 >
+                  {link.icon && <link.icon className="h-4 w-4" />}
                   {link.label}
                   <ArrowUpRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
@@ -46,8 +48,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <Separator className="mb-8" />
+        <Separator className="mb-6" />
 
+        <p className="text-sm text-muted-foreground text-center">
+          © {year} Anup Rao. All rights reserved.
+        </p>
       </div>
     </footer>
   )

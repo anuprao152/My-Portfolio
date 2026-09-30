@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import AboutSection from './components/AboutSection'
 import ProjectGrid from './components/ProjectGrid'
 import ProjectDetail from './components/ProjectDetail'
 import SkillsSection from './components/SkillsSection'
@@ -68,8 +70,10 @@ export default function App() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background">
+    <div id="top" className="min-h-screen bg-background">
+      <Navbar />
       <Hero />
+      <AboutSection />
 
       {loading ? (
         <div className="flex items-center justify-center py-32">

@@ -15,7 +15,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-          AI-enthusiastic developer building intelligent AI agents, modern developer platforms,
+          AI enthusiast and software engineer building intelligent AI agents, modern developer platforms,
           and resilient distributed applications that scale with real-world impact.
         </p>
 

@@ -100,7 +100,7 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
         {project.impactMetrics.length > 0 && (
           <div className="grid grid-cols-2 gap-2 mb-4">
             {project.impactMetrics.slice(0, 2).map((metric, i) => (
-              <ImpactMetric key={i} label={metric.label} value={metric.value} />
+              <ImpactMetric key={i} label={metric.label} value={metric.value} size="sm" />
             ))}
           </div>
         )}
